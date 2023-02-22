@@ -7,9 +7,26 @@
     System.out.println("여기는 updateProdecutView.jsp product="+product);
 %> --%>
 <script type="text/javascript">
-function fncUpdateProduct() {
+/* function fncUpdateProduct(currentPage, menu){
+	document.getElementById("currentPage").value = currentPage;
+	document.getElementById("menu").value = menu;
+   	document.detailForm.submit();
+}  */
+
+/* function fncAddProduct() {
+	var prodNo=document.detailForm.prodNo.value;
+	var name = document.detailForm.prodName.value;
+	var detail = document.detailForm.prodDetail.value;
+	var manuDate = document.detailForm.manuDate.value;
+	var price = document.detailForm.price.value;
+	
+	if(name == null || name.length <1){
+		alert("이름은  반드시 입력하셔야 합니다.");
+		return;
+	}
+	document.detailForm.action='/addProduct.do';
 	document.detailForm.submit();
-}
+} */
 </script>
 <html>
 <head>
@@ -21,7 +38,7 @@ function fncUpdateProduct() {
 </script>
 
 <script type="text/javascript">
-<!--
+
 function fncAddProduct(){
 	//Form 유효성 검증
  	var name = document.detailForm.prodName.value;
@@ -49,13 +66,41 @@ function fncAddProduct(){
 	document.detailForm.action='/updateProduct.do';
 	document.detailForm.submit();
 }
--->
+
+/* /* function fncAddProduct(){
+	//Form 유효성 검증
+ 	var name = document.detailForm.prodName.value;
+	var detail = document.detailForm.prodDetail.value;
+	var manuDate = document.detailForm.manuDate.value;
+	var price = document.detailForm.price.value;
+
+	if(name == null || name.length<1){
+		alert("상품명은 반드시 입력하여야 합니다.");
+		return;
+	}
+	if(detail == null || detail.length<1){
+		alert("상품상세정보는 반드시 입력하여야 합니다.");
+		return;
+	}
+	if(manuDate == null || manuDate.length<1){
+		alert("제조일자는 반드시 입력하셔야 합니다.");
+		return;
+	}
+	if(price == null || price.length<1){
+		alert("가격은 반드시 입력하셔야 합니다.");
+		return;
+	}
+		
+	document.detailForm.action='/updateProduct.do';
+	document.detailForm.submit();
+} */ 
+
 </script>
 </head>
 
 <body bgcolor="#ffffff" text="#000000">
 
-<form name="detailForm" method="post" action="/uodateProduct.do">
+<form name="detailForm" method="post" action="/updateProduct.do">
 
 <input type="hidden" name="prodNo" value="${product.prodNo}"/>
 
@@ -116,11 +161,11 @@ function fncAddProduct(){
 	</tr>
 	<tr>
 		<td width="104" class="ct_write">
-			제조일자 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
+			등록일 <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input type="text" readonly="readonly" name="manuDate" value="${product.manuDate}" 	
+			<input type="text"  name="regDate" value="${product.regDate}" 	
 						class="ct_input_g" style="width: 100px; height: 19px" maxLength="10" minLength="6">&nbsp;
 						<img 	src="../images/ct_icon_date.gif" width="15" height="15" 
 									onclick="show_calendar('document.detailForm.manuDate', document.detailForm.manuDate.value)" />

@@ -26,7 +26,7 @@
 	 <!-- SQL : SELECT ONE -->
 	 <select 	id="getProduct"	parameterType="INTEGER"	resultMap="productSelectMap">
 		SELECT
-		prod_no , prod_name , prod_detail , manufacture_day ,  price ,  image_file , reg_date 		
+		prod_no , prod_name , prod_detail , manufacture_day ,  price ,  image_file  		
 		FROM product 
 		WHERE prod_no = #{value}
 	 </select>
@@ -39,8 +39,9 @@
 			prod_detail			= #{prodDetail},
 			manufacture_day		= #{manuDate} ,
 			price				= #{price},
-			image_file			= #{fileName},
-			reg_date     		= SYSDATE
+			image_file			= #{fileName}
+			<!-- reg_date     		= #{regDate} -->
+			<!-- reg_date     		= TO_DATE(#{regDate},'YYYY/MM/DD') -->
 	   	</set>
 	   	WHERE prod_no = #{prodNo}
 	 </update>
@@ -55,26 +56,26 @@
 											<if test="searchCondition != null">
 												<where>
 													<if test="searchCondition == 0 and searchKeyword !='' ">
-										 				prod_no = #{searchKeyword}
+										 				prod_no LIKE'%#{searchKeyword}%'
 													</if>
 													<if test="searchCondition == 1 and searchKeyword !='' ">
-										 				prod_name = #{searchKeyword}
+										 				prod_name LIKE'%#{searchKeyword}%'
 													</if>
 												 	<if test="searchCondition == 2 and searchKeyword !='' ">
-										 				price = #{searchKeyword}
+										 				price LIKE'%#{searchKeyword}%'
 													</if> 
-													<if test="searchCondition == 3 and searchKeyword !='' ">
-										 				prod_detail = #{searchKeyword}
+													<!-- <if test="searchCondition == 3 and searchKeyword !='' ">
+										 				prod_detail LIKE'%#{searchKeyword}%'
 													</if>
 													<if test="searchCondition == 4 and searchKeyword !='' ">
-										 				manufacture_day = #{searchKeyword}
+										 				manufacture_day LIKE'%#{searchKeyword}%'
 													</if>
 													<if test="searchCondition == 5 and searchKeyword !='' ">
-										 				image_file = #{searchKeyword}
+										 				image_file LIKE'%#{searchKeyword}%'
 													</if>
 													<if test="searchCondition == 6 and searchKeyword !='' ">
-										 				reg_date = #{searchKeyword}
-													</if>
+										 				reg_date LIKE'%#{searchKeyword}%'
+													</if> -->
 												</where>
 											</if>
 											ORDER BY prod_no ) inner_table
@@ -109,7 +110,7 @@
 								<if test="searchCondition == 2 and searchKeyword !='' ">
 									price = #{searchKeyword}
 								</if> 
-								<if test="searchCondition == 3 and searchKeyword !='' ">
+								<!-- <if test="searchCondition == 3 and searchKeyword !='' ">
 									prod_detail = #{searchKeyword}
 								</if>
 								<if test="searchCondition == 4 and searchKeyword !='' ">
@@ -120,9 +121,18 @@
 								</if>
 								<if test="searchCondition == 6 and searchKeyword !='' ">
 									reg_date = #{searchKeyword}
-								</if>
+								</if> -->
 							</where>
 						</if> ) countTable						
+	 </select>
+	 
+	 <select  id="makeCurrentPageSql"  parameterType="search"	resultMap="productSelectMap">
+	 	SELECT * FROM (		
+	 					SELECT inner_table. * ,  ROWNUM AS row_seq
+	 					FROM (	"+sql+" ) inner_table
+	 					WHERE ROWNUM  &lt;= #{search.getCurrentPage()}*#{search.getPageSize()}  )
+	 			WHERE row_seq BETWEEN 
+	 				((#{search.getCurrentPage()-1)}*#{search.getPageSize()+1)} AND #{search.getCurrentPage()*search.getPageSize()}
 	 </select>
 	 
 </mapper>

@@ -23,29 +23,34 @@ public class ProductDaoImpl implements ProductDao{
 	}
 	
 	public ProductDaoImpl() {
-		System.out.println(this.getClass());
+		System.out.println("ProductDaoImpl.java ProductDaoImpl()"+this.getClass());
 	}
 
 	///Method
 	public Product findProduct(int prodNo) throws Exception{
+		System.out.println("ProductDaoImpl.java findProduct ½ÇÇàµÊ");
 		return sqlSession.selectOne("ProductMapper.getProduct", prodNo);
 	}
 	
 	public void insertProduct(Product product)throws Exception{
+		System.out.println("ProductDaoImpl.java insertProduct ½ÇÇàµÊ");
 		sqlSession.insert("ProductMapper.addProduct", product);
 		System.out.println("ProductDaoImpl.java addProduct product: "+product);
 	}
 	
 	public List<Product> getProductList(Search search) throws Exception {
+		System.out.println("ProductDaoImpl.java getProductList ½ÇÇàµÊ");
 		System.out.println("ProductDaoImpl.java   getProductList= "+search);
 		return sqlSession.selectList("ProductMapper.getProductList", search);
 	}
 	
 	public void updateProduct(Product product) throws Exception {
+		System.out.println("ProductDaoImpl.java updateProduct ½ÇÇàµÊ");
 		sqlSession.update("ProductMapper.updateProduct", product);
 	}
 	
 	public int getTotalCount(Search search) throws Exception {
+		System.out.println("ProductDaoImpl.java getTotalCount ½ÇÇàµÊ");
 		return sqlSession.selectOne("ProductMapper.getTotalCount", search);
 	}
 	

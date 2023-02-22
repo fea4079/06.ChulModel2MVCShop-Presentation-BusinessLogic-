@@ -2,6 +2,7 @@
 <%@ page contentType="text/html; charset=euc-kr" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <%-- <%@ page import="java.util.List"  %>
 <%@ page import="com.model2.mvc.service.domain.Product" %>
 <%@ page import="com.model2.mvc.common.Search" %>
@@ -28,7 +29,7 @@
 <html>
 <head>
 <title>상품 검색</title>
-<%-- <c:set var="menu" value="${param.menu}"/> --%>
+<c:set var="menu" value="${param.menu}"/>
 
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
@@ -71,7 +72,7 @@ function fncUpdateTranCodeByProd( currentPage, menu, prodNo, tranCode) {
 
 <div style="width:98%; margin-left:10px;">
 
-<form name="detailForm" action="/listProduct.do" method="post">
+<form name="detailForm" action="/listProduct.do?${menu}" method="post">
 
 <table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
 	<tr>
@@ -190,14 +191,17 @@ function fncUpdateTranCodeByProd( currentPage, menu, prodNo, tranCode) {
 		<tr class="ct_list_pop">
 			<td align="center">${ i }</td>
 			<td></td>
+				<td align="left">
 				<c:choose>
 			 		<c:when test="${param.menu eq 'manage' }"> 
-			 			<td align="left"><a href="/updateProductView.do?prodNo=${product.prodNo}&menu=${param.menu}">${product.prodName}</a></td>
+			 			<%-- <a href="/updateProduct.do?prodNo=${product.prodNo}&menu=${param.menu}">${product.prodName}</a> --%>
+			 			<a href="/updateProductView.do?prodNo=${product.prodNo}">${product.prodName}</a>
 					</c:when>
 					<c:when test="${param.menu eq 'search' }"> 
-						<td align="left"><a href="/getProduct.do?prodNo=${product.prodNo}&menu=${param.menu}">${product.prodName}</a></td>
+						<a href="/getProduct.do?prodNo=${product.prodNo}&menu=${param.menu}">${product.prodName}</a>
 					</c:when>
 				</c:choose>
+				
 			<%-- <td align="left"><a href="/getProduct.do?prodNo=${product.prodNo}&menu=${param.menu}">${product.prodName}</a></td> --%>
 			<%-- <td align="left"><a href="/getProduct.do?prodNo=${product.prodNo}&menu=${param.menu}">${product.prodName}</a></td> --%>
 			<td></td>
@@ -215,8 +219,8 @@ function fncUpdateTranCodeByProd( currentPage, menu, prodNo, tranCode) {
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px;">
 	<tr>
 		<td align="center">
-			<input type="hidden" id="currentPage" name="currentPage" value=""/>
-			<input type="hidden" id="menu" name="menu" value=""/>
+			<input type="hidden" id="currentPage" name="currentPage" value="${resultPage.currentPage}"/>
+			<input type="hidden" id="menu" name="menu" value="${param.menu}"/>
 			<%-- <% if( resultPage.getCurrentPage() <= resultPage.getPageUnit() ){ %>
 					◀ 이전
 			<% }else{ %>
@@ -248,8 +252,12 @@ function fncUpdateTranCodeByProd( currentPage, menu, prodNo, tranCode) {
 		<%
 			}
 		%> --%>
-			<input type="hidden" id="currentPage" name="currentPage" value=""/>
-			<input type="hidden" id="menu" name="menu" value=""/>
+		
+			
+			<c:set var = "product" value="product" scope="request"/>
+			<c:set var = "search" value="search" scope="request"/>
+			<c:set var = "menu" value="menu" scope="request"/>
+			
 			
 			<jsp:include page="../common/pageNavigator1.jsp"/>
     	</td>

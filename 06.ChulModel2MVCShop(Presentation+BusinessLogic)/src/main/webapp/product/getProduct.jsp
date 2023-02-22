@@ -1,9 +1,9 @@
 <%@ page contentType="text/html; charset=euc-kr" %>
-<%@ page import="com.model2.mvc.service.domain.*" %>
-<%@ page import="com.model2.mvc.common.Search" %>
+<%-- <%@ page import="com.model2.mvc.service.domain.*" %>
+<%@ page import="com.model2.mvc.common.Search" %> --%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ page import="java.util.*"  %>
+<%-- <%@ page import="java.util.*"  %> --%>
 
 <%--
 	Product product = (Product)request.getAttribute("Product");

@@ -16,14 +16,19 @@
 
 <script type="text/javascript">
 
-function fncUpdateProduct() {
+function fncAddProduct() {
 
-	var name=document.detailForm.prodNo.value;
-	
-	if(name == null || name.length <1){
+	/* var prodNo=document.detailForm.prodNo.value; */
+	var name = document.detailForm.prodNo.value;
+	/* var detail = document.detailForm.prodDetail.value;
+	var manuDate = document.detailForm.manuDate.value;
+	var price = document.detailForm.price.value; */
+	/* if(name == null || name.length <1){
 		alert("이름은  반드시 입력하셔야 합니다.");
 		return;
-	}
+	} */
+	document.detailForm.action='/updateProduct.do?';
+	document.detailForm.submit();
 	
 }
 
@@ -93,14 +98,14 @@ function resetData() {
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
-	
 	<tr>
 		<td width="104" class="ct_write">등록일</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input 	type="text" name="regDate" value="${product.regDate}" class="ct_input_g" 
-							style="width:370px; height:19px"  maxLength="100">
+							style="width:100px; height:19px"  maxLength="100">
 		</td>
+	<%-- 	<fmt:parseDate var="regDate" value="${ product.regDate }" pattern="yyyy-MM-dd" /> --%>
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>

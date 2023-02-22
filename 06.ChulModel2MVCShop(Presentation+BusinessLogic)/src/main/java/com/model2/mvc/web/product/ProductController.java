@@ -84,7 +84,7 @@ public class ProductController {
 //		}
 		
 		if(menu.equals("manage")) {
-			return "forward:/product/updateProductView.do";	
+			return "forward:/updateProductView.do";	
 		}else {
 			return "forward:/product/getProduct.jsp";
 		}
@@ -130,7 +130,7 @@ public class ProductController {
 								@RequestParam("menu") String menu,
 								Model model , HttpServletRequest request) throws Exception{
 		
-		System.out.println("ProductController.java /listProduct.do");
+		System.out.println("ProductController.java¿¡ /listProduct.do½ÇÇàµÊ");
 		
 		if(search.getCurrentPage() ==0 ){
 			search.setCurrentPage(1);
