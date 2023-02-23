@@ -64,8 +64,12 @@ public class Product {
 		return regDate;
 	}
 	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
 		System.out.println("Product.java ½ÇÇàµÊ");
+		this.regDate = regDate;
+//		if(regDate != null && ((CharSequence) regDate).length() !=0 ){
+//			regDate = regDate.split("-")[0];
+//		}
+		
 	}
 
 	// Override

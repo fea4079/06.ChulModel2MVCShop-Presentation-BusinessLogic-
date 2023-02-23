@@ -5,7 +5,7 @@
 
   	<c:set var = "product" value="product" scope="request"/>
 	<c:set var = "search" value="search" scope="request"/>
-	<c:set var = "menu" value="menu" scope="request"/>
+	<c:set var = "menu" value="${param.menu}" scope="request"/>
 	
 	<c:if test="${ resultPage.currentPage <= resultPage.pageUnit }">
 			¢¸ ְְּü

@@ -19,6 +19,7 @@
 </script>
 
 </head>
+<c:set var="pagetype" value="user" scope="request"/>
 
 <body bgcolor="#ffffff" text="#000000">
 

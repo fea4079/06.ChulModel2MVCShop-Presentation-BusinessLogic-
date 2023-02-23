@@ -67,7 +67,8 @@ public class ProductController {
 	
 	@RequestMapping("/getProduct.do")
 	public String getProduct( @RequestParam("prodNo") int prodNo, 
-								@RequestParam("menu") String menu, Model model ) throws Exception {
+								@RequestParam("menu") String menu,
+								Model model ) throws Exception {
 		
 		System.out.println("ProductController.java /getProduct.do");
 		//Business Logic
@@ -75,10 +76,12 @@ public class ProductController {
 //		String menu = request.getParameter("menu");
 		// Model 과 View 연결
 		model.addAttribute("product", product);
+		System.out.println("ProductController.java /getProduct.do  product "+product);
+		//System.out.println("ProductController.java /getProduct.do  menu "+menu);
 //		model.addAttribute("menu", menu);
 		
 //		if(menu.equals("manage")) {
-//			return "forward:/getProduct.do?prodNo="+product.getProdNo()+"menu="+menu;	
+//			return "forward:/getProduct.do?prodNo="+product.getProdNo()+"&menu="+menu;	
 //		}else {
 //			return "forward:/product/getProduct.jsp";
 //		}
@@ -87,14 +90,20 @@ public class ProductController {
 			return "forward:/updateProductView.do";	
 		}else {
 			return "forward:/product/getProduct.jsp";
+//			return "forward:/getProduct.do?prodNo="+product.getProdNo();
 		}
+//		return "forward:/product/getProduct.jsp";
+//		
+//		String viewName = menu.equals("manage")?"forward:/product/updateProductView.jsp":"forward:/product/getProduct.jsp";
+//		return viewName;
 //		return "forward:/product/getProduct.jsp";
 //		return "forward:/getProduct.do?prodNo="+product.getProdNo();
 //		return "forward:/getProduct.do?prodNo="+product.getProdNo()+"&menu="+menu;
 	}
 	
 	@RequestMapping("/updateProductView.do")
-	public String updateProductView( @RequestParam("prodNo") int prodNo , Model model ) throws Exception{
+	public String updateProductView( @RequestParam("prodNo") int prodNo , 
+									Model model ) throws Exception{
 
 		System.out.println("ProductController.java /updateProductView.do");
 		//Business Logic
@@ -102,7 +111,7 @@ public class ProductController {
 		// Model 과 View 연결
 		model.addAttribute("product", product);
 		
-		return "forward:/product/updateProduct.jsp";
+		return "forward:/product/updateProductView.jsp";
 	}
 	
 	@RequestMapping("/updateProduct.do")
@@ -113,6 +122,7 @@ public class ProductController {
 		System.out.println("ProductController.java /updateProduct.do");
 		//Business Logic
 		productService.updateProduct(product);
+		System.out.println("menu "+menu);
 		
 //		model.addAttribute("menu", menu);
 		
@@ -120,14 +130,14 @@ public class ProductController {
 //		if(sessionId.equals(product.getProdNo())){
 //			session.setAttribute("product", product);
 //		}
-		
-		return "forward:/getProduct.do?prodNo="+product.getProdNo();
+//		return "forward:/getProduct.do";
+		return "forward:/product/getProduct.jsp";
+//		return "forward:/getProduct.do?menu="+menu;
 	}
 	
 		
 	@RequestMapping("/listProduct.do")
 	public String listProduct( @ModelAttribute("search") Search search ,
-								@RequestParam("menu") String menu,
 								Model model , HttpServletRequest request) throws Exception{
 		
 		System.out.println("ProductController.java에 /listProduct.do실행됨");
@@ -140,7 +150,8 @@ public class ProductController {
 		// Business logic 수행
 		Map<String , Object> map=productService.getProductList(search);
 		
-		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
+		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, search.getPageSize());
+//		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
 		System.out.println(resultPage);
 		
 		// Model 과 View 연결

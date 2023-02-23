@@ -1,6 +1,6 @@
 <%@ page contentType="text/html; charset=euc-kr" %>
-
-<%@ page import="com.model2.mvc.service.domain.*" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- <%@ page import="com.model2.mvc.service.domain.*" %> --%>
 
 <%-- <%
 	Product product = (Product)request.getAttribute("Product");
@@ -16,10 +16,11 @@
 
 <script type="text/javascript">
 
-function fncAddProduct() {
 
-	/* var prodNo=document.detailForm.prodNo.value; */
-	var name = document.detailForm.prodNo.value;
+function fncUpdateProduct() {
+
+	/* /* var prodNo=document.detailForm.prodNo.value; */ 
+	/* var name = document.detailForm.prodNo.value; */
 	/* var detail = document.detailForm.prodDetail.value;
 	var manuDate = document.detailForm.manuDate.value;
 	var price = document.detailForm.price.value; */
@@ -27,9 +28,10 @@ function fncAddProduct() {
 		alert("이름은  반드시 입력하셔야 합니다.");
 		return;
 	} */
-	document.detailForm.action='/updateProduct.do?';
+/* 	document.getElementById("menu").value = menu;  */
+	 document.detailForm.action='/updateProduct.do';
 	document.detailForm.submit();
-	
+	 
 }
 
 
@@ -41,7 +43,7 @@ function resetData() {
 </head>
 
 <body bgcolor="#ffffff" text="#000000">
-
+<%-- <c:set var="menu" value="${param.menu}" scope="request"/> --%>
 <form name="detailForm"  method="post" >
 
 <input type="hidden" name="prodNo" value="${product.prodNo}">
@@ -99,10 +101,10 @@ function resetData() {
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
 	<tr>
-		<td width="104" class="ct_write">등록일</td>
+		<td width="104" class="ct_write">제조일자</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<input 	type="text" name="regDate" value="${product.regDate}" class="ct_input_g" 
+			<input 	type="text" name="manuDate" value="${product.manuDate}" class="ct_input_g" 
 							style="width:100px; height:19px"  maxLength="100">
 		</td>
 	<%-- 	<fmt:parseDate var="regDate" value="${ product.regDate }" pattern="yyyy-MM-dd" /> --%>
@@ -141,13 +143,13 @@ function resetData() {
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
 	<tr>
-		<td width="104" class="ct_write">현재상태 </td>
+		<td width="104" class="ct_write">상품이미지 </td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<table border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td height="26">
-						<input 	type="text" name="proTranCode" value="${product.proTranCode}" class="ct_input_g" 
+						<input 	type="text" name="fileName" value="${product.fileName}" class="ct_input_g" 
 										style="width:100px; height:19px" onChange="check_email(this.form);">
 					</td>
 				</tr>
@@ -169,7 +171,7 @@ function resetData() {
 						<img src="/images/ct_btnbg01.gif" width="17" height="23">
 					</td>
 					<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
-						<a href="javascript:fncAddProduct();">수정</a>
+						<a href="javascript:fncUpdateProduct();">수정</a>
 					</td>
 					<td width="14" height="23">
 						<img src="/images/ct_btnbg03.gif" width="14" height="23"/>
