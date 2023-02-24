@@ -112,32 +112,7 @@ function resetData() {
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
 	</tr>
-	<%-- <tr>
-		<td width="104" class="ct_write"> </td>
-		<td bgcolor="D6D6D6" width="1"></td>
-		<td class="ct_write01">
-			<select 	name="phone1" class="ct_input_g" style="width:50px" 
-							onChange="document.detailForm.phone2.focus();">
-				<option value="010" >010</option>
-				<option value="011" >011</option>
-				<option value="016" >016</option>
-				<option value="018" >018</option>
-				<option value="019" >019</option>
-			</select>
-			<input type="text" name="phone2"
-						<%if (vo.getPhone() != null) {%> 
-							value="<%=vo.getPhone().split("-")[1] %>"
-						<%} %> 
-						class="ct_input_g" style="width:100px; height:19px"  maxLength="9" >
-			- 
-			<input type="text" name="phone3" 
-						<%if (vo.getPhone() != null) {%> 
-							value="<%=vo.getPhone().split("-")[2] %>"
-						<%} %> 
-						class="ct_input_g" style="width:100px; height:19px"  maxLength="9" >
-			<input type="hidden" name="phone" class="ct_input_g"  >
-		</td>
-	</tr> --%>
+	
 
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>

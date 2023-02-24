@@ -122,6 +122,7 @@ public class ProductController {
 		System.out.println("ProductController.java /updateProduct.do");
 		//Business Logic
 		productService.updateProduct(product);
+		System.out.println("ProductController.java /updateProduct.do ½ÇÇàµÊ½ÇÇàµÊ Á¦¹ß ½ÇÇàµÊ");
 		System.out.println("menu "+menu);
 		
 //		model.addAttribute("menu", menu);

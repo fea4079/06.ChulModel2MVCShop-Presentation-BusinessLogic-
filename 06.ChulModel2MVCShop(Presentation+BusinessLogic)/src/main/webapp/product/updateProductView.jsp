@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=euc-kr" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%-- <%@ page import="com.model2.mvc.service.domain.*" %> --%>
 
@@ -22,7 +23,7 @@
 
 function fncUpdateProduct(){
 	
- 	/* document.detailForm.action='/updateProduct.do';  */
+ 	document.detailForm.action='/updateProduct.do'; 
 	document.detailForm.submit();
 }
 
@@ -33,8 +34,10 @@ function fncUpdateProduct(){
 
 <!-- <form name="detailForm" method="post" action="/updateProduct.do"> -->
 <form name="detailForm" method="post" >
+<%-- <c:set var="menu" value="${param.menu}" scope="request"/> --%>
 
 <input type="hidden" name="prodNo" value="${product.prodNo}"/>
+<input type="hidden" name="menu" value="${param.menu}"/>
 
 <table width="100%" height="37" border="0" cellpadding="0" cellspacing="0">
 	<tr>
